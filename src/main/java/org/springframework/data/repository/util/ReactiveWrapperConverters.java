@@ -15,9 +15,17 @@
  */
 package org.springframework.data.repository.util;
 
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import kotlinx.coroutines.flow.Flow;
 import kotlinx.coroutines.flow.FlowKt;
 import kotlinx.coroutines.reactive.ReactiveFlowKt;
+import org.checkerframework.checker.tainting.qual.Tainted;
+import org.checkerframework.checker.tainting.qual.Untainted;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -256,7 +264,7 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super Mono<?>> getWrapperClass() {
+		public Class<? super @Tainted Mono<?>> getWrapperClass() {
 			return Mono.class;
 		}
 
@@ -269,7 +277,7 @@ public abstract class ReactiveWrapperConverters {
 	/**
 	 * Wrapper for Project Reactor's {@link Flux}.
 	 */
-	private enum FluxWrapper implements ReactiveTypeWrapper<Flux<?>> {
+	private enum FluxWrapper implements ReactiveTypeWrapper<@Untainted Flux<?>> {
 
 		INSTANCE;
 
@@ -293,7 +301,7 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super Flow<?>> getWrapperClass() {
+		public Class<? super @Tainted Flow<?>> getWrapperClass() {
 			return Flow.class;
 		}
 
@@ -310,7 +318,7 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super Publisher<?>> getWrapperClass() {
+		public Class<? super @Tainted Publisher<?>> getWrapperClass() {
 			return Publisher.class;
 		}
 
@@ -341,8 +349,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.reactivex.rxjava3.core.Single<?>> getWrapperClass() {
-			return io.reactivex.rxjava3.core.Single.class;
+		public Class<? super @Tainted Single<?>> getWrapperClass() {
+			return Single.class;
 		}
 
 		@Override
@@ -359,8 +367,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.reactivex.rxjava3.core.Maybe<?>> getWrapperClass() {
-			return io.reactivex.rxjava3.core.Maybe.class;
+		public Class<? super @Tainted Maybe<?>> getWrapperClass() {
+			return Maybe.class;
 		}
 
 		@Override
@@ -377,8 +385,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.reactivex.rxjava3.core.Observable<?>> getWrapperClass() {
-			return io.reactivex.rxjava3.core.Observable.class;
+		public Class<? super @Tainted Observable<?>> getWrapperClass() {
+			return Observable.class;
 		}
 
 		@Override
@@ -395,8 +403,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.reactivex.rxjava3.core.Flowable<?>> getWrapperClass() {
-			return io.reactivex.rxjava3.core.Flowable.class;
+		public Class<? super @Tainted Flowable<?>> getWrapperClass() {
+			return Flowable.class;
 		}
 
 		@Override
@@ -416,8 +424,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.smallrye.mutiny.Uni<?>> getWrapperClass() {
-			return io.smallrye.mutiny.Uni.class;
+		public Class<? super @Tainted Uni<?>> getWrapperClass() {
+			return Uni.class;
 		}
 
 		@Override
@@ -437,8 +445,8 @@ public abstract class ReactiveWrapperConverters {
 		INSTANCE;
 
 		@Override
-		public Class<? super io.smallrye.mutiny.Multi<?>> getWrapperClass() {
-			return io.smallrye.mutiny.Multi.class;
+		public Class<? super @Tainted Multi<?>> getWrapperClass() {
+			return Multi.class;
 		}
 
 		@Override

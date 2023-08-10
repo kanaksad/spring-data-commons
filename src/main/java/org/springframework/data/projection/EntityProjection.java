@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import org.checkerframework.checker.tainting.qual.Tainted;
+import org.checkerframework.checker.tainting.qual.Untainted;
 import org.springframework.data.mapping.PropertyPath;
 import org.springframework.data.util.Streamable;
 import org.springframework.data.util.TypeInformation;
@@ -107,7 +109,7 @@ public class EntityProjection<M, D> implements Streamable<EntityProjection.Prope
 	 */
 	public void forEachRecursive(Consumer<? super PropertyProjection<?, ?>> action) {
 
-		for (PropertyProjection<?, ?> descriptor : properties) {
+		for (@Untainted PropertyProjection<?, ?> descriptor : properties) {
 
 			if (descriptor instanceof ContainerPropertyProjection) {
 				action.accept(descriptor);

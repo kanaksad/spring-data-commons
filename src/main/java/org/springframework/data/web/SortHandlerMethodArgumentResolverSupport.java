@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import org.checkerframework.checker.tainting.qual.Tainted;
+import org.checkerframework.checker.tainting.qual.Untainted;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.MergedAnnotation;
 import org.springframework.core.annotation.MergedAnnotations;
@@ -424,7 +426,7 @@ public abstract class SortHandlerMethodArgumentResolverSupport {
 		 *
 		 * @param callback block to be executed.
 		 */
-		public void forEachOrder(Consumer<? super Order> callback) {
+		public void forEachOrder(Consumer<? super @Tainted Order> callback) {
 
 			for (int i = 0; i < lastIndex; i++) {
 				toOrder(elements[i]).ifPresent(callback);

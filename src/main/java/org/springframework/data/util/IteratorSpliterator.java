@@ -15,6 +15,8 @@
  */
 package org.springframework.data.util;
 
+import org.checkerframework.checker.tainting.qual.Tainted;
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Spliterator;
